@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/general.css" />
+    <title>Homework #26 Objects</title>
+  </head>
+  <body>
+    <section class="minimum">
+      <h1>Minimum</h1>
+      <div class="minimum-div">
+        <input
+          type="number"
+          class="minimum-input"
+          placeholder="write distance in km"
+          value="0"
+        />
+        <button class="minimum-button">Add a distance</button>
+      </div>
+      <p class="driver-times">...</p>
+      <p class="fuel-consumption">...</p>
+    </section>
 
-    <script src="./script.js"> </script>
-</body>
+    <section class="avarage">
+      <h1>Avarage</h1>
+
+      <ul class="avarage-list">
+        <li class="avarage-list__section">
+          <input
+            class="avarage-list__section-input"
+            placeholder="Hours"
+            value="0"
+          />
+          <p class="avarage-list__section-text">Hours</p>
+        </li>
+        <li class="avarage-list__section">
+          <input
+            class="avarage-list__section-input"
+            placeholder="Minutes"
+            value="0"
+          />
+          <p class="avarage-list__section-text">Minutes</p>
+        </li>
+        <li class="avarage-list__section">
+          <input
+            class="avarage-list__section-input"
+            placeholder="Seconds"
+            value="0"
+          />
+          <p class="avarage-list__section-text">Seconds</p>
+        </li>
+      </ul>
+    </section>
+
+    <script src="./js/minimum.js"></script>
+    <script src="./js/minimum.js"></script>
+    <script src="./js/maximum.js"></script>
+  </body>
 </html>

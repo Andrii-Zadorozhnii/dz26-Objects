@@ -8,6 +8,16 @@ let car = {
     drivers: [],
 }
 
+let distance;
+let timeForTransportationWithBrakes;
+let timeForTransportationMinutes;
+let totalFuelConsumption;
+
+let minimumButton = document.querySelector('.minimum-button');
+let driverTimes = document.querySelector('.driver-times');
+let fuelConsamption = document.querySelector('.fuel-consumption');
+
+
 function carInfo() {
     console.log(`--------------`);
     console.log(`Car Information:`);
@@ -42,12 +52,11 @@ let rounded = function (number) {
 }
 
 function timeCalculatorforDriver() {
-    let distance = +prompt(`Enter distance in km: `);
-    console.log(`Total distance: ${distance}`);
+    distance = +document.querySelector('.minimum-input').value;
+    console.log(`Total distance: ${distance} km`);
     let avarageSpeed = car.avarageSpeed;
-
     let timeForTransportation = distance / avarageSpeed;
-    let timeForTransportationMinutes = rounded((timeForTransportation - Math.floor(timeForTransportation)) * 60);
+    timeForTransportationMinutes = rounded((timeForTransportation - Math.floor(timeForTransportation)) * 60);
     let timeForTransportationHours = Math.floor(timeForTransportation);
     let totalBrakes = 0;
     console.log(`Time for transportation without rest: ${timeForTransportationHours} hours and ${timeForTransportationMinutes} minutes`);
@@ -59,42 +68,33 @@ function timeCalculatorforDriver() {
         console.log(`Total brakes: 0 times`);
     }
     console.log(`--------------`);
-    let timeForTransportationWithBrakes = totalBrakes + timeForTransportationHours;
+    timeForTransportationWithBrakes = totalBrakes + timeForTransportationHours;
     console.log(`Time for transportation with brakes: ${timeForTransportationWithBrakes} hours and ${timeForTransportationMinutes} minutes`);
     console.log(`--------------`);
-    let totalFuelConsumption = (distance / 100) * car.consumption;
+    let totalFuelConsumption = rounded((distance / 100) * car.consumption);
     console.log(`You will need fuel for this trip: ${totalFuelConsumption} liters`);
     console.log(`--------------`);
+
+
+    driverTimes.innerHTML = (`Time for transportation with brakes: ${timeForTransportationWithBrakes} hours and ${timeForTransportationMinutes} minutes`);
+    fuelConsamption.innerHTML = (`You will need fuel for this trip: ${totalFuelConsumption} liters`);
 }
 
 
+function finalAnswer(){
+    console.log(`Minimum`);
+    carInfo();
+    addDriver('Oleg');
+    addDriver('Ivan');
+    addDriver('Slava');
+    removeDriver('Ivan');
+    timeCalculatorforDriver();
+    
+}
+
+if(minimumButton){
+    minimumButton.addEventListener('click', finalAnswer, false);
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-console.log(`Minimum`);
-carInfo();
-addDriver('Oleg');
-addDriver('Ivan');
-addDriver('Slava');
-removeDriver('Ivan');
-timeCalculatorforDriver();
-
+// добавить вывод текста как в консоли но на главную страницу

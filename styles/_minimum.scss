@@ -1,0 +1,14 @@
+.minimum {
+    
+    &-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+.driver-times, .fuel-consumption{
+    text-align: center;
+    margin-bottom: 5px;
+}

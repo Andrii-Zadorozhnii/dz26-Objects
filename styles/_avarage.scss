@@ -1,0 +1,23 @@
+.avarage-list {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    &__section {
+
+        &-input {
+            max-width: 50px;
+            width: 100%;
+            text-align: center;
+        }
+
+        &-text{
+            max-width: 50px;
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+}
