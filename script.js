@@ -3,6 +3,7 @@ let car = {
     model: 'F-150',
     build: 2023,
     avarageSpeed: 120,
+    consumption: 12,
     fuelTank: 100,
     drivers: [],
 }
@@ -57,10 +58,13 @@ function timeCalculatorforDriver() {
         totalBrakes = 0;
         console.log(`Total brakes: 0 times`);
     }
-
+    console.log(`--------------`);
     let timeForTransportationWithBrakes = totalBrakes + timeForTransportationHours;
     console.log(`Time for transportation with brakes: ${timeForTransportationWithBrakes} hours and ${timeForTransportationMinutes} minutes`);
-
+    console.log(`--------------`);
+    let totalFuelConsumption = (distance / 100) * car.consumption;
+    console.log(`You will need fuel for this trip: ${totalFuelConsumption} liters`);
+    console.log(`--------------`);
 }
 
 
