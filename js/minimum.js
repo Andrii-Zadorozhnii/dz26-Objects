@@ -96,5 +96,3 @@ if(minimumButton){
     minimumButton.addEventListener('click', finalAnswer, false);
 }
 
-
-// добавить вывод текста как в консоли но на главную страницу
