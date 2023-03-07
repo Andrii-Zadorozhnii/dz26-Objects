@@ -32,6 +32,10 @@
             class="avarage-list__section-input hours"
             placeholder="Hours"
             value="0"
+            min="0"
+            max="24"
+            type="number"
+            required
           />
           <p class="avarage-list__section-text">Hours</p>
         </li>
@@ -40,6 +44,10 @@
             class="avarage-list__section-input minutes"
             placeholder="Minutes"
             value="0"
+            min="0"
+            max="59"
+            type="number"
+            required
           />
           <p class="avarage-list__section-text">Minutes</p>
         </li>
@@ -48,11 +56,29 @@
             class="avarage-list__section-input seconds"
             placeholder="Seconds"
             value="0"
+            min="0"
+            max="59"
+            type="number"
+            required
           />
           <p class="avarage-list__section-text">Seconds</p>
         </li>
       </ul>
-      <span class="entered-time"></span>
+      <div class="plus-time">
+        <div class="plus-time__hour">
+          <input type="number" class="plus-time__hour-input" value="0">
+          <button class="plus-time__hour-button" disabled>Add Hour(s)</button>
+        </div>
+        <div class="plus-time__minutes">
+          <input type="number" class="plus-time__minutes-input" value="0">
+          <button class="plus-time__minutes-button" disabled>Add Minute(s)</button>
+        </div>
+        <div class="plus-time__seconds">
+          <input type="number" class="plus-time__seconds-input" value="0">
+          <button class="plus-time__seconds-button" disabled>Add Second(s)</button>
+        </div>
+      </div>
+      <span class="time-unswer">...</span>
     </section>
 
     <script src="./js/minimum.js"></script>

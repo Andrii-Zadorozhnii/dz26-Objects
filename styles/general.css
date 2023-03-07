@@ -156,5 +156,24 @@ h1 {
 .avarage-list__button {
   position: relative;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.plus-time__hour {
+  display: flex;
+  justify-content: center;
+}
+.plus-time__minutes {
+  display: flex;
+  justify-content: center;
+}
+.plus-time__seconds {
+  display: flex;
+  justify-content: center;
+}
+
+.time-unswer {
+  display: flex;
+  justify-content: center;
 }/*# sourceMappingURL=general.css.map */

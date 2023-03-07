@@ -24,6 +24,31 @@
     &__button {
         position: relative;
         left: 50%;
-        transform: translate(-50%, 0);
+        transform: translate(-50%, -50%);
+        text-align: center;
     }
+}
+
+
+.plus-time {
+
+    &__hour {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__minutes {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__seconds {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.time-unswer {
+    display: flex;
+    justify-content: center;
 }

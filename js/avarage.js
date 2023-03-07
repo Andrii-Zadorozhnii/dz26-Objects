@@ -1,62 +1,143 @@
+function updateClock(n) {
+    n = parseInt(n.value);
+    // console.log(n);
+    return n;
+}
+
+function finalTime() {
+    console.log(`${time.hours}h:${time.minutes}m:${time.seconds}s`);
+    unswer.innerHTML = (`${(time.hours).toFixed(0)}h:${(time.minutes).toFixed(0)}m:${(time.seconds).toFixed(0)}s`);
+}
+
+// Variables
 let inputHours = document.querySelector(`.hours`);
 let inputMinutes = document.querySelector(`.minutes`);
 let inputSeconds = document.querySelector(`.seconds`);
-let enteredTime = document.querySelector(`.entered-time`);
+let unswer = document.querySelector('.time-unswer')
 
-if (inputHours === undefined || inputMinutes === undefined || inputSeconds === undefined) {
-    console.log(`Please enter a value for hours, minutes and seconds`);
-}
-
+// List
 let time = {
-    hours: parseInt(inputHours),
-    minutes : parseInt(inputMinutes),
-    seconds: parseInt(inputSeconds)
+    hours: 0,
+    minutes: 0,
+    seconds: 0
 }
 
-function updateClock(n) {
-    n = parseInt(n.value);
-    console.log(n);
-}
-
-if (inputMinutes){
+if (inputHours) {
     inputHours.addEventListener(`input`, () => {
-        updateClock(inputHours);
+        time.hours = updateClock(inputHours);
+        finalTime()
     })
+
 }
 
-if (inputMinutes){
+if (inputMinutes) {
     inputMinutes.addEventListener(`input`, () => {
-        updateClock(inputMinutes);
+        time.minutes = updateClock(inputMinutes);
+        finalTime()
     })
 }
 
-if (inputSeconds){
+if (inputSeconds) {
     inputSeconds.addEventListener(`input`, () => {
-        updateClock(inputSeconds);
+        time.seconds = updateClock(inputSeconds);
+        finalTime()
     })
 }
 
-if( time.hours === null || time.minutes === null || time.seconds === null){
-    enteredTime.innerHTML = `please enter a value for hours, minutes and seconds`;
-} else{
-    enteredTime.innerHTML = `${time.hours}:${time.minutes}:${time.seconds}`;
+// Add time Calculations
+let inputPlusHours = document.querySelector(`.plus-time__hour-input`);
+let inputPlusMinutes = document.querySelector(`.plus-time__minutes-input`);
+let inputPlusSeconds = document.querySelector(`.plus-time__seconds-input`);
+
+let newHours;
+let newMinutes;
+let newSeconds;
+
+if (inputPlusHours) {
+    inputPlusHours.addEventListener(`input`, () => {
+        {
+            time.hours += updateClock(inputPlusHours);
+            console.log(time.hours);
+            finalTime()
+        }
+    })
 }
 
+if (inputPlusMinutes) {
+    inputPlusMinutes.addEventListener(`input`, () => {
+        if ((time.minutes + updateClock(inputPlusMinutes)) >= 60) {
+            time.hours = time.hours + Math.floor((time.minutes + updateClock(inputPlusMinutes)) / 60);
 
+            time.minutes = (time.minutes + updateClock(inputPlusMinutes)) % 60;
 
+            finalTime()
+        } else {
+            time.minutes = time.minutes + updateClock(inputPlusMinutes);
+            finalTime()
+        }
+    })
+}
 
-// let inputHours = (+document.querySelector(`.hours`)).value;
-// let inputMinutes = (+document.querySelector(`.minutes`)).value;
-// let inputSeconds = (+document.querySelector(`.seconds`)).value;
-// let inputTimeButton = document.querySelector(`.avarage-list__button`);
+if (inputPlusSeconds) {
+    inputPlusSeconds.addEventListener(`input`, () => {
+        if ((time.minutes + (time.seconds + updateClock(inputPlusSeconds)) / 3600) >= 60) {
+            console.log("1");
+            time.hours = time.hours + Math.floor((time.minutes + (time.seconds + updateClock(inputPlusSeconds)) / 3600) / 60);
+            finalTime()
 
-// let time = {
-//     hours: inputHours,
-//     minutes : inputMinutes,
-//     seconds: inputSeconds
-// }
+            if ((Math.floor(time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 3600) / 60)) >= 60) {
+                time.hours = time.hours + Math.floor((Math.floor(time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 3600) / 60)) / 60)
+                finalTime()
+            } else {
+                time.minutes = Math.floor(time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 3600) / 60);
+                console.log('hello')
 
-// inputTimeButton.onclick = function() {
-//     console.log(time);
-// }
+                time.seconds = (time.seconds + updateClock(inputPlusSeconds)) % 60
+
+                finalTime()
+            }
+
+        } else if ((time.seconds + (updateClock(inputPlusSeconds))) >= 60) {
+
+            if ((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) >= 60) {
+                time.hours = time.hours + Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60)
+
+                time.minutes = Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60);
+                finalTime()
+
+                if ((time.seconds + (((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60) >= 60) {
+
+                    if (((time.minutes + Math.floor((((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60))) > 60) {
+
+                        time.hours = time.hours + Math.floor(((time.minutes + Math.floor((((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60))))
+
+                        time.minutes = ((((time.minutes + Math.floor((((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60)))) - Math.floor(((time.minutes + Math.floor((((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60))))) * 60
+
+                        finalTime()
+                    }
+
+                    time.minutes = (time.minutes + Math.floor((((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60))
+
+                    time.seconds = (((((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60) - (Math.floor((((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60))) * 60;
+
+                    finalTime()
+                } else {
+                    time.seconds = time.seconds + (((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60) - Math.floor((((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60) - (Math.floor((time.minutes + ((time.seconds + updateClock(inputPlusSeconds)) / 60)) / 60))) * 60)) * 60
+                    finalTime()
+                    console.log("3")
+                }
+
+            } else {
+                time.minutes = time.minutes + Math.floor((time.seconds + updateClock(inputPlusSeconds)) / 60);
+
+                time.seconds = (time.seconds + updateClock(inputPlusSeconds)) % 60;
+                console.log('hello2')
+                finalTime()
+            }
+        } else {
+            time.seconds = time.seconds + updateClock(inputPlusSeconds);
+            finalTime()
+        }
+    })
+}
 
